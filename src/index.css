@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Libre Baskerville", serif;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body,
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+ul {
+  list-style: none;
+}
+
+#selected-color-name {
+  position: fixed;
+  font-size: 8em;
+  color: white;
+  z-index: 2;
+}
+
+#palette {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30rem;
+  min-height: 5rem;
+  padding-left: 3rem;
+  padding-right: 3rem;
+  flex-wrap: wrap;
+  position: absolute;
+  bottom: 3rem;
+  background-color: white;
+  border-radius: 10rem;
+  -webkit-border-radius: 10rem;
+  -moz-border-radius: 10rem;
+  -ms-border-radius: 10rem;
+  -o-border-radius: 10rem;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+    rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+#palette li {
+  height: 3.5rem;
+}
+
+.color {
+  border: none;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 100%;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  -ms-border-radius: 100%;
+  -o-border-radius: 100%;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+#shapes {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+}
+
+.shape {
+  height: 13rem;
+  width: 8rem;
+  border-radius: 0.5rem;
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+  transition: transform linear 7s 0.2s;
+  -moz-transition: transform linear 7s 0.2s;
+  -ms-transition: transform linear 7s 0.2s;
+  -o-transition: transform linear 7s 0.2s;
+  -webkit-transition: transform linear 7s 0.2s;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+}
