@@ -1,8 +1,9 @@
-const COLORS = ["#dab7a3", "#d39b75", "#9ca18d", "#9ca18d", "#21574a"];
+const COLORS = ["#dab7a3", "#d39b75", "#9ca18d", "#628272", "#21574a"];
 const WINDOW_HEIGHT = window.innerHeight;
 const WINDOW_WIDTH = window.innerWidth;
 
 const $colorName = document.getElementById("selected-color-name");
+const $shapes = [];
 
 changeColor(COLORS[0]);
 createPalette();
@@ -11,6 +12,9 @@ createShapes();
 function changeColor(selectedColor) {
   $colorName.textContent = selectedColor;
   document.body.style.backgroundColor = selectedColor;
+  $shapes.forEach(($shape) => {
+    $shape.style.backgroundColor = selectedColor;
+  });
 }
 
 function createPalette() {
@@ -29,6 +33,7 @@ function createPaletteColor(colorName) {
   $button.className = "color";
   $button.dataset.color = colorName;
   $button.style.backgroundColor = colorName;
+  $button.onclick = () => changeColor(colorName);
 
   $li.appendChild($button);
 
@@ -52,6 +57,9 @@ function createShape() {
   $li.style.backgroundColor = COLORS[0];
   $li.style.top = `${getRandomNumber(-10, WINDOW_HEIGHT)}px`;
   $li.style.left = `${getRandomNumber(-10, WINDOW_WIDTH)}px`;
+
+  $shapes.push($li);
+
   runAnimation($li);
   return $li;
 }
