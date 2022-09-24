@@ -1,7 +1,7 @@
 {
   "name": "color-palette",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "index.js",
   "repository": "https://github.com/pjaeyoung/color-palette.git",
   "author": "pjaeyoung <devdodose@gmail.com>",
   "license": "MIT"
