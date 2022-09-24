@@ -36,7 +36,7 @@ ul {
   justify-content: space-evenly;
   align-items: center;
   width: 30rem;
-  min-height: 5rem;
+  height: 5rem;
   padding-left: 3rem;
   padding-right: 3rem;
   flex-wrap: wrap;
@@ -96,4 +96,24 @@ ul {
   -moz-border-radius: 0.5rem;
   -ms-border-radius: 0.5rem;
   -o-border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 700px) {
+  #selected-color-name {
+    font-size: 4em;
+  }
+
+  #palette {
+    width: 24rem;
+    height: 4rem;
+  }
+
+  #palette li {
+    height: 3rem;
+  }
+
+  .color {
+    width: 2.8rem;
+    height: 2.8rem;
+  }
 }
