@@ -1,13 +1,25 @@
 const COLORS = ["#dab7a3", "#d39b75", "#9ca18d", "#628272", "#21574a"];
-const WINDOW_HEIGHT = window.innerHeight;
-const WINDOW_WIDTH = window.innerWidth;
-
 const $colorName = document.getElementById("selected-color-name");
 const $shapes = [];
 
 changeColor(COLORS[0]);
 createPalette();
 createShapes();
+runMoveAndScaleAnimationAll();
+
+window.addEventListener("resize", debounce(placeShapesRandomly, 500));
+
+function debounce(fn, limit) {
+  let timer;
+  return function () {
+    if (timer) {
+      timer = null;
+      clearTimeout(timer);
+      return;
+    }
+    timer = setTimeout(fn, limit);
+  };
+}
 
 function changeColor(selectedColor) {
   $colorName.textContent = selectedColor;
@@ -41,35 +53,49 @@ function createPaletteColor(colorName) {
 }
 
 function createShapes() {
-  const $shapes = document.getElementById("shapes");
+  const $shapes_container = document.getElementById("shapes");
   const fragment = document.createDocumentFragment();
 
   for (let i = 0; i < 140; i++) {
-    fragment.appendChild(createShape());
+    const $shape = createShape();
+    $shapes.push($shape);
+    fragment.appendChild($shape);
   }
-
-  $shapes.appendChild(fragment);
+  placeShapesRandomly();
+  $shapes_container.appendChild(fragment);
 }
 
 function createShape() {
   const $li = document.createElement("li");
+
   $li.className = "shape";
   $li.style.backgroundColor = COLORS[0];
-  $li.style.top = `${getRandomNumber(-10, WINDOW_HEIGHT)}px`;
-  $li.style.left = `${getRandomNumber(-10, WINDOW_WIDTH)}px`;
-
-  $shapes.push($li);
-
-  runAnimation($li);
   return $li;
 }
 
-function runAnimation($shape) {
+function placeShapesRandomly() {
+  const WINDOW_HEIGHT = window.innerHeight;
+  const WINDOW_WIDTH = window.innerWidth;
+  $shapes.forEach(($shape) => {
+    $shape.style.top = `${getRandomNumber(-10, WINDOW_HEIGHT)}px`;
+    $shape.style.left = `${getRandomNumber(-10, WINDOW_WIDTH)}px`;
+  });
+}
+
+function runMoveAndScaleAnimationAll() {
+  $shapes.forEach(runMoveAndScaleAnimation);
+}
+
+function runMoveAndScaleAnimation($shape) {
+  const WINDOW_HEIGHT = window.innerHeight;
+  const WINDOW_WIDTH = window.innerWidth;
+
   const scale = getRandomNumber(0.8, 2);
-  const posX = getRandomNumber(-500, 800);
-  const posY = getRandomNumber(-400, 800);
+  const posX = getRandomNumber(-WINDOW_WIDTH * 0.3, WINDOW_WIDTH * 0.5);
+  const posY = getRandomNumber(-WINDOW_HEIGHT * 0.3, WINDOW_HEIGHT * 0.5);
   $shape.style.transform = `scale(${scale}) translate(${posX}px, ${posY}px)`;
-  setTimeout(() => runAnimation($shape), 2000);
+
+  setTimeout(() => runMoveAndScaleAnimation($shape), 2000);
 }
 
 function getRandomNumber(min, max) {
