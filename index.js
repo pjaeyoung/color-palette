@@ -45,7 +45,16 @@ function createPaletteColor(colorName) {
   $button.className = "color";
   $button.dataset.color = colorName;
   $button.style.backgroundColor = colorName;
-  $button.onclick = () => changeColor(colorName);
+  $button.onclick = () => {
+    changeColor(colorName);
+    const tempElem = document.createElement("textarea");
+    tempElem.value = colorName;
+    document.body.appendChild(tempElem);
+
+    tempElem.select();
+    document.execCommand("copy");
+    document.body.removeChild(tempElem);
+  };
 
   $li.appendChild($button);
 
